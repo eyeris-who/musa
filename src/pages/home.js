@@ -1,4 +1,5 @@
 import axios from "axios";
+import MusicNotes from '../components/MusicNotes';
 
 export default function Home() {
   axios.post('api/user', {
@@ -45,14 +46,15 @@ export default function Home() {
 
   return (
     <div className="home">
+      <MusicNotes />
       <div className="profile">
-        <div className="grid grid-cols-2 gap-4 h-full rounded-lg w-fit aspect-square">
+        <div className="z-10 grid grid-cols-2 gap-4 h-full rounded-lg w-fit aspect-square">
           <img className="pfp w-full h-full object-cover rounded-full" src="" alt="Profile" />
           <img className="pfp1 w-full h-full object-cover rounded-full" src="" alt="Profile1" />
           <img className="pfp2 w-full h-full object-cover rounded-full" src="" alt="Profile2" />
           <img className="pfp3 w-full h-full object-cover rounded-full" src="" alt="Profile3" />
         </div>
-        <div className="text-left ml-8 w-1/2 h-full flex flex-col gap-4">
+        <div className="z-10 text-left ml-8 w-1/2 h-full flex flex-col gap-4">
           <div className="w-full flex-shrink-0 text-left">
             <h1 className="font-bold text-9xl"></h1>
             <h2 className="font-bold text-xl">THIS MONTH:</h2>

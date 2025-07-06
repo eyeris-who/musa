@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
+import MusicNotes from '../components/MusicNotes';
 
 export default function Anal() {
   const [genresData, setGenresData] = useState([]);
@@ -64,9 +65,10 @@ export default function Anal() {
 
   return (
     <div className="anal">
+      <MusicNotes />
       <div className="tophalf">
         <div className="tracks">
-          <div className="tracklist">
+          <div className="tracklist z-10">
             <div className="header">
               <h2>top tracks this month</h2>
               <div className="tracklist-actions">
@@ -78,7 +80,7 @@ export default function Anal() {
               {/* List of top tracks will be populated here */}
             </ul>
           </div>
-          <div className="tracklist">
+          <div className="tracklist z-10">
             <div className="header">
               <h2>top tracks of all time</h2>
               <div className="tracklist-actions">
@@ -91,20 +93,20 @@ export default function Anal() {
             </ul>
           </div>
         </div>
-        <div className="topartists">
+        <div className="topartists z-10">
           <div className="header">
             <h2>top artists</h2>
           </div>
         </div>
       </div>
       <div className="bottomhalf">
-        <div className="topgenres">
+        <div className="topgenres z-10">
           <div className="header">
             <h2>top genres</h2>
           </div></div>
-        <div className="musicplayer"></div>
+        <div className="musicplayer z-10"></div>
       </div>
-      <div className="piechart">
+      <div className="piechart z-10">
         <PieChart
           series={[
             {
