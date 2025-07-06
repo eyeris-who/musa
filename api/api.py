@@ -32,7 +32,7 @@ def callback():
         response = requests.post("https://accounts.spotify.com/api/token", {
             "grant_type": "authorization_code",
             "code": code,
-            "redirect_uri": "https://musa-cally.vercel.app/api/callback",
+            "redirect_uri": "https://musa-cally.vercel.app/callback",
             "client_id": SPOTIFY_CLIENT_ID,
             "client_secret": SPOTIFY_CLIENT_SECRET,
         }, headers={"Content-Type": "application/x-www-form-urlencoded"}, timeout=10)
