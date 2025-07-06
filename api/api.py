@@ -1,13 +1,15 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
+import os
 from collections import defaultdict
 
 app = Flask(__name__)
 CORS(app, origins=["https://musa-cally.vercel.app", "http://localhost:3000"])
 
-SPOTIFY_CLIENT_ID = "aae53e8417b047308811890aab5b2cd4"
-SPOTIFY_CLIENT_SECRET = "4329a41d79a846e58f57ebdfdd3d826c"
+# Load environment variables
+SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
 
 @app.route('/api/route') # use route to fetch result of execution
 def predict():
