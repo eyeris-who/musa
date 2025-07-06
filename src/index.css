@@ -12,14 +12,6 @@
   --color-accent: #4dfff9;
 }
 
-@theme {
-  --color-primary: #dc1c22;
-  --color-secondary: #f424af;
-  --color-background: #efebd9;
-  --color-text: black;
-  --color-accent: #4dfff9;
-}
-
 
 .home, .anal, .recs, .login {
   color: var(--color-text);
