@@ -6,7 +6,7 @@
    - Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
    - Select your app
    - Go to "Edit Settings"
-   - Add `https://musa-cally.vercel.app/callback` to the Redirect URIs list
+   - Add `https://musa-cally.vercel.app/api/callback` to the Redirect URIs list
    - Save the changes
 
 ## Deployment Steps
@@ -30,7 +30,7 @@
 ### Common Issues:
 
 1. **"Invalid redirect URI" error**:
-   - Ensure `https://musa-cally.vercel.app/callback` is added to your Spotify app's redirect URIs
+   - Ensure `https://musa-cally.vercel.app/api/callback` is added to your Spotify app's redirect URIs
    - Check that the URI matches exactly (no trailing slashes)
 
 2. **CORS errors**:
