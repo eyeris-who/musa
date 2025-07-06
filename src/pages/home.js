@@ -1,5 +1,6 @@
 import axios from "axios";
 import MusicNotes from '../components/MusicNotes';
+import DrawingCanvas from "../components/DrawingCanvas";
 
 export default function Home() {
   axios.post('api/user', {
@@ -62,7 +63,14 @@ export default function Home() {
             <p>Number of Songs: </p>
             <p>Number of Artists: </p>
           </div>
-          <div className="w-full flex-1 text-left bg-[color:var(--color-primary)]"></div>
+          <div className="w-full flex-1 text-left  h-full">
+            {/* bg-[color:var(--color-primary)] */}
+            <h2 className="font-bold text-xl">SHOW OFF YOUR CREATIVITY:</h2>
+            <div className="flex flex-col gap-2">
+              <p>Draw something on the canvas below!</p>
+              <DrawingCanvas />
+            </div>
+          </div>
         </div>
       </div>    
     </div>
