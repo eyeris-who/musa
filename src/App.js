@@ -51,7 +51,7 @@ function App() {
         {/* Standalone Login Page (no sidebar) */}
         <Route path="/" element={<Login />} />
         {/* Receive the code from Spotify at the /callback route. */}
-        <Route path="/api/callback" element={<Callback />} />
+        <Route path="/callback" element={<Callback />} />
 
         {/* All other pages wrapped with Sidebar */}
         <Route
