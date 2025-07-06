@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import requests
 from collections import defaultdict
 
 app = Flask(__name__)
+CORS(app, origins=["https://musa-cally.vercel.app", "http://localhost:3000"])
 
 SPOTIFY_CLIENT_ID = "aae53e8417b047308811890aab5b2cd4"
 SPOTIFY_CLIENT_SECRET = "4329a41d79a846e58f57ebdfdd3d826c"
@@ -21,21 +23,31 @@ def func2():
 def callback():    
     try:
         code = request.json.get('code')
+        if not code:
+            return jsonify({'error': 'No code provided'}), 400
+            
         # exchange code for token
         response = requests.post("https://accounts.spotify.com/api/token", {
             "grant_type": "authorization_code",
             "code": code,
-            "redirect_uri": "http://127.0.0.1:3000/api/callback",
+            "redirect_uri": "https://musa-cally.vercel.app/api/callback",
             "client_id": SPOTIFY_CLIENT_ID,
             "client_secret": SPOTIFY_CLIENT_SECRET,
-        }, headers={"Content-Type": "application/x-www-form-urlencoded"})
+        }, headers={"Content-Type": "application/x-www-form-urlencoded"}, timeout=10)
+        
         if response.status_code != 200:
-            return jsonify({"error": "Failed to get token"}), 400
+            error_data = response.json() if response.content else {}
+            error_msg = error_data.get('error_description', 'Failed to get token')
+            return jsonify({"error": error_msg}), 400
         
         # return the token
         return jsonify(response.json())        
-    except AttributeError:
-        return jsonify({'error': 'No code provided'}), 400
+    except requests.exceptions.Timeout:
+        return jsonify({'error': 'Request to Spotify timed out'}), 408
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': f'Network error: {str(e)}'}), 500
+    except Exception as e:
+        return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
     
     
 

@@ -40,7 +40,7 @@ export default function Sidebar() {
     <nav className="sidebar">
       <div className="tophalf">
         <ul>
-          <a href="/"><svg className="icon"
+          <a href="/home"><svg className="icon"
               xmlns="http://www.w3.org/2000/svg"
               height="35px"
               viewBox="-1 0 19 19"

@@ -1,3 +1,9 @@
+/* @import "tailwindcss"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-primary: #dc1c22;
   --color-secondary: #f424af;
@@ -6,7 +12,17 @@
   --color-accent: #4dfff9;
 }
 
+@theme {
+  --color-primary: #dc1c22;
+  --color-secondary: #f424af;
+  --color-background: #efebd9;
+  --color-text: black;
+  --color-accent: #4dfff9;
+}
+
+
 .home, .anal, .recs, .login {
+  color: var(--color-text);
   display: flex;
   justify-items: center;
   align-items: center;
@@ -131,7 +147,7 @@ code {
 .profile {
   /* background-color: var(--color-background); */
   width: 100%;
-  height: 60%;
+  height:100%;
   display: inline-flex;
   padding:30px;
 }
@@ -151,17 +167,19 @@ code {
 }
 
 .pfp-container {
+  height:100%;
+  background-color: var(--color-background);
   display: grid;
   grid-template-columns: repeat(2, auto);
-  gap: 10px 30px;
+  gap: 0px 0px;
   justify-content: center;
   /* background-color: #4dfff9; */
   width:fit-content;
 }
 
 .pfp-container img {
-  width: 350px;
-  height: 350px;
+  height: 45vh;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 50%;
   display: block;
@@ -169,10 +187,8 @@ code {
 
 .tracks {
   width: 100%;
-  height: 40%;
   display: inline-flex;  
   gap: 20px;
-  padding: 30px;
 }
 
 .tracklist {
@@ -218,17 +234,8 @@ h2 {
   display: inline-flex;
   align-items: center;
   padding:30px;
+  padding-top:0;
   gap:20px;
-}
-
-.chart {
-  width: 70%;
-  height: 100%;
-  display: absolute;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color:aliceblue;
 }
 
 .topartists {

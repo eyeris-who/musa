@@ -46,47 +46,23 @@ export default function Home() {
   return (
     <div className="home">
       <div className="profile">
-        <div className="pfp-container">
-          <img className="pfp" src="" alt="Profile" />
-          <img className="pfp1" />
-          <img className="pfp2" />
-          <img className="pfp3" />
+        <div className="grid grid-cols-2 gap-4 h-full rounded-lg w-fit aspect-square">
+          <img className="pfp w-full h-full object-cover rounded-full" src="" alt="Profile" />
+          <img className="pfp1 w-full h-full object-cover rounded-full" src="" alt="Profile1" />
+          <img className="pfp2 w-full h-full object-cover rounded-full" src="" alt="Profile2" />
+          <img className="pfp3 w-full h-full object-cover rounded-full" src="" alt="Profile3" />
         </div>
-        <div className="profile-info">
-          <h1></h1>
-          <h2>THIS MONTH:</h2>
-          <p>Minutes Listened: </p>
-          <p>Number of Songs: </p>
-          <p>Number of Artists: </p>
-        </div>
-      </div>
-      <div className="tracks">
-        <div className="tracklist">
-          <div className="header">
-            <h2>top tracks this month</h2>
-            <div className="tracklist-actions">
-              <div className="play-button"></div>
-              <span className="arrow">↗</span>
-            </div>
+        <div className="text-left ml-8 w-1/2 h-full flex flex-col gap-4">
+          <div className="w-full flex-shrink-0 text-left">
+            <h1 className="font-bold text-9xl"></h1>
+            <h2 className="font-bold text-xl">THIS MONTH:</h2>
+            <p>Minutes Listened: </p>
+            <p>Number of Songs: </p>
+            <p>Number of Artists: </p>
           </div>
-          <ul>
-            {/* List of top tracks will be populated here */}
-          </ul>
+          <div className="w-full flex-1 text-left bg-[color:var(--color-primary)]"></div>
         </div>
-        <div className="tracklist">
-          <div className="header">
-            <h2>top tracks of all time</h2>
-            <div className="tracklist-actions">
-              <div className="play-button"></div>
-              <span className="arrow">↗</span>
-            </div>
-          </div>
-          <ul>
-            {/* List of all-time top tracks will be populated here */}
-          </ul>
-        </div>
-      </div>
-      
+      </div>    
     </div>
   );
 }

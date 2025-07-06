@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = "http://127.0.0.1:3000/api/callback";
+const BASE_URL = "https://musa-cally.vercel.app/api/callback";
 
 const AUTH_URL =
   "https://accounts.spotify.com/authorize?client_id=aae53e8417b047308811890aab5b2cd4&response_type=code&"+

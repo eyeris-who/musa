@@ -65,9 +65,30 @@ export default function Anal() {
   return (
     <div className="anal">
       <div className="tophalf">
-        <div className="chart">
-          <div className="header">
-            <h2>listening activity over time</h2>
+        <div className="tracks">
+          <div className="tracklist">
+            <div className="header">
+              <h2>top tracks this month</h2>
+              <div className="tracklist-actions">
+                <div className="play-button"></div>
+                <span className="arrow">↗</span>
+              </div>
+            </div>
+            <ul>
+              {/* List of top tracks will be populated here */}
+            </ul>
+          </div>
+          <div className="tracklist">
+            <div className="header">
+              <h2>top tracks of all time</h2>
+              <div className="tracklist-actions">
+                <div className="play-button"></div>
+                <span className="arrow">↗</span>
+              </div>
+            </div>
+            <ul>
+              {/* List of all-time top tracks will be populated here */}
+            </ul>
           </div>
         </div>
         <div className="topartists">
