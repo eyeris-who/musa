@@ -5,11 +5,14 @@ import MusicNotes from '../components/MusicNotes';
 
 export default function Anal() {
   const [genresData, setGenresData] = useState([]);
+  const [topShortTracks, setShortTracks] = useState([]);
+  const [topLongTracks, setLongTracks] = useState([]);
+  const [topArtists, setTopArtists] = useState([]);
 
   useEffect(() => {
     axios.post('api/artists', {
       access_token: localStorage.getItem('access_token'),
-      time_range: 'short_term',
+      time_range: 'long_term',
       limit: 10,
       offset: 0,
     })
@@ -17,15 +20,11 @@ export default function Anal() {
         const artists = response.data.items;
         console.log('Artists data:', artists);
 
-        if (artists[0]?.images[0]?.url) {
-          document.querySelector('.pfp1').src = artists[0].images[0].url;
-        }
-        if (artists[1]?.images[0]?.url) {
-          document.querySelector('.pfp2').src = artists[1].images[0].url;
-        }
-        if (artists[2]?.images[0]?.url) {
-          document.querySelector('.pfp3').src = artists[2].images[0].url;
-        }
+        const topArtistsData = artists.map(artist => ({
+          Name: artist.name,
+          Image: artist.images[0]?.url,
+        }));
+        setTopArtists(topArtistsData);
       })
       .catch(error => {
         console.error('Error fetching artists data:', error);
@@ -42,6 +41,38 @@ export default function Anal() {
       })
       .catch(error => {
         console.error('Error fetching genre data:', error);
+      });
+
+    axios.post('api/tracks', {
+      access_token: localStorage.getItem('access_token'),
+      time_range: 'short_term',
+      limit: 50,
+      offset: 0,
+    })
+      .then(response => {
+        const tracks = response.data.items;
+        console.log('1-month data:', tracks);
+        const topShort = getTracksData(tracks);
+        setShortTracks(topShort);
+      })
+      .catch(error => {
+        console.error('Error fetching tracks data:', error);
+      });
+
+    axios.post('api/tracks', {
+      access_token: localStorage.getItem('access_token'),
+      time_range: 'long_term',
+      limit: 50,
+      offset: 0,
+    })
+      .then(response => {
+        const tracks = response.data.items;
+        console.log('All-time tracks data:', tracks);
+        const topAllTime = getTracksData(tracks);
+        setLongTracks(topAllTime);
+      })
+      .catch(error => {
+        console.error('Error fetching all-time tracks data:', error);
       });
   }, []);
 
@@ -61,6 +92,15 @@ export default function Anal() {
     return topGenres;
   };
 
+  const getTracksData = (trackData) => {
+    return trackData.map(track => ({
+      Song: track.name,
+      Artist: track.artists.map(artist => artist.name).join(', '),
+      Image: track.album.images[0]?.url,
+      Uri: track.uri,
+    }));
+  };
+
   const valueFormatter = (item) => `${item.value}%`;
 
   return (
@@ -68,43 +108,68 @@ export default function Anal() {
       <MusicNotes />
       <div className="tophalf">
         <div className="tracks">
-          <div className="tracklist z-10">
+          <div className="tracklist z-10 bg-[color:var(--color-primary)]">
             <div className="header">
               <h2>top tracks this month</h2>
-              <div className="tracklist-actions">
-                <div className="play-button"></div>
-                <span className="arrow">↗</span>
-              </div>
+              <span className="arrow">↗</span>
             </div>
             <ul>
-              {/* List of top tracks will be populated here */}
+              {/* List of top short-term tracks will be populated here */}
+              {topShortTracks.map((track, index) => (
+                <li key={index}>
+                  <img src={track.Image} alt={track.Song} />
+                  <div className="track-info">
+                    <h3>{track.Song}</h3>
+                    <p>{track.Artist}</p>
+                  </div>
+                  {/* <a href={track.Uri} target="_blank" rel="noopener noreferrer">Listen</a> */}
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="tracklist z-10">
+          <div className="tracklist z-10 bg-[color:var(--color-primary)]">
             <div className="header">
               <h2>top tracks of all time</h2>
-              <div className="tracklist-actions">
-                <div className="play-button"></div>
-                <span className="arrow">↗</span>
-              </div>
+              <span className="arrow">↗</span>
             </div>
             <ul>
-              {/* List of all-time top tracks will be populated here */}
+              {/* List of long-term top tracks will be populated here */}
+              {topLongTracks.map((track, index) => (
+                <li key={index}>
+                  <img src={track.Image} alt={track.Song} />
+                  <div className="track-info">
+                    <h3>{track.Song}</h3>
+                    <p>{track.Artist}</p>
+                  </div>
+                  {/* <a href={track.Uri} target="_blank" rel="noopener noreferrer">Listen</a> */}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-        <div className="topartists z-10">
+        <div className="topartists z-10 bg-[color:var(--color-primary)]">
           <div className="header">
             <h2>top artists</h2>
           </div>
+          <ul>
+            {/* List of top long-term artists will be populated here */}
+            {topArtists.map((artist, index) => (
+              <li key={index}>
+                <img src={artist.Image} alt={artist.Name} />
+                <div className="artist-info">
+                  <h3>{artist.Name}</h3>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <div className="bottomhalf">
-        <div className="topgenres z-10">
+        <div className="topgenres z-10 bg-[color:var(--color-primary)]">
           <div className="header">
             <h2>top genres</h2>
           </div></div>
-        <div className="musicplayer z-10"></div>
+        <div className="musicplayer z-10 bg-[color:var(--color-primary)]"></div>
       </div>
       <div className="piechart z-10">
         <PieChart

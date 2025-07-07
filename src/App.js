@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Sidebar from './pages/sidebar';
+import Sidebar from './components/sidebar';
 import Anal from './pages/anal';
 import Recs from './pages/recs';
 import Login from './pages/login';

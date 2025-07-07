@@ -1,11 +1,9 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 import requests
 import os
 from collections import defaultdict
 
 app = Flask(__name__)
-CORS(app, origins=["https://musa-cally.vercel.app", "http://localhost:3000"])
 
 # Load environment variables
 SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')

@@ -66,7 +66,7 @@ const DrawingCanvas = () => {
       className="flex flex-col h-full w-full"
     >
       <div ref={buttonRef} className="mb-2 space-x-2">
-        <button onClick={setToDraw} className="bg-blue-500 text-white p-2 rounded">
+        <button onClick={setToDraw} className="bg-[color:var(--color-primary)] text-white p-2 rounded">
           <svg className="h-6 w-6" fill="#ffffff" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
@@ -79,10 +79,10 @@ const DrawingCanvas = () => {
             </g>
           </svg>
         </button>
-        <button onClick={setToErase} className="bg-red-500 text-white rounded p-1">
+        <button onClick={setToErase} className="bg-[color:var(--color-primary)] text-white rounded p-1">
             <svg className="h-8 w-8" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="0.744"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.096"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0722 3.9967L20.7508 9.83395L17.0544 13.5304L13.0758 17.5H21.0041V19H7.93503L4.00195 15.0669L15.0722 3.9967ZM10.952 17.5L15.4628 12.9994L11.8268 9.3634L6.12327 15.0669L8.55635 17.5H10.952Z" fill="#ffffff"></path> </g></svg>
         </button>
-        <a id="download_image_link" onClick={saveImageToLocal} className="bg-green-500 text-white p-2 cursor-pointer rounded inline-block">
+        <a id="download_image_link" onClick={saveImageToLocal} className="bg-[color:var(--color-primary)] text-white p-2 cursor-pointer rounded inline-block">
           <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>

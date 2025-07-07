@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import audio from '../assets/click.mp3'; // Adjust the path as necessary
 
 export default function Sidebar() {
   // Load colour variables from localStorage or set defaults
@@ -36,11 +37,41 @@ export default function Sidebar() {
     window.location.href = '/';
   }
 
+  const playAudioAndNavigate = (event) => {
+    event.preventDefault();
+    console.log('playAudioAndNavigate function called');
+    
+    // Get the href before playing audio
+    const href = event.currentTarget.getAttribute('href');
+    console.log('Navigating to:', href);
+    
+    // Create and play audio
+    const audioElement = new Audio(audio);
+    audioElement.play().catch((error) => {
+      console.error('Error playing audio:', error);
+    });
+
+    // Check if we're already on the target page
+    const currentPath = window.location.pathname;
+    const isCurrentPage = currentPath === href;
+
+    // Navigate after a short delay to allow audio to start
+    setTimeout(() => {
+      if (!isCurrentPage) {
+        if (href) {
+          window.location.href = href;
+        } else {
+          console.error('No href attribute found on the clicked element');
+        }
+      }
+    }, 200); // 200ms delay
+  }
+
   return (
     <nav className="sidebar">
       <div className="tophalf">
         <ul>
-          <a href="/home"><svg className="icon"
+          <a href="/home" onClick={playAudioAndNavigate}><svg className="icon"
               xmlns="http://www.w3.org/2000/svg"
               height="35px"
               viewBox="-1 0 19 19"
@@ -51,7 +82,7 @@ export default function Sidebar() {
               />
             </svg>
           </a>
-          <a href="/analytics"><svg
+          <a href="/analytics" onClick={playAudioAndNavigate}><svg
             xmlns="http://www.w3.org/2000/svg"
             height="40px"
             fill="none"
@@ -70,7 +101,7 @@ export default function Sidebar() {
             <path fill="var(--color-accent)" d="M22.5 7a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
           </svg>
           </a>
-          <a href="/recommendations"><svg height="40px" className="icon"
+          <a href="/recommendations" onClick={playAudioAndNavigate}><svg height="40px" className="icon"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="2 2 20 20"
