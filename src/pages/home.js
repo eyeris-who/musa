@@ -1,6 +1,7 @@
 import axios from "axios";
 import MusicNotes from '../components/MusicNotes';
 import DrawingCanvas from "../components/DrawingCanvas";
+import MusicPlayer from "../components/MusicPlayer";
 
 export default function Home() {
   axios.post('api/user', {
@@ -69,8 +70,11 @@ export default function Home() {
               <p>Draw something on the canvas below!</p>
               <DrawingCanvas />
             </div> */}
-
-
+            <h2 className="font-bold text-xl">PLAY YOUR FAVOURITE SONGS:</h2>
+            <div className="flex flex-col gap-2">
+              <p>Listen to your top tracks from the last month!</p>
+              <MusicPlayer />
+            </div>
           </div>
         </div>
       </div>    

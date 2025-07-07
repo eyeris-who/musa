@@ -97,7 +97,7 @@ export default function Anal() {
       Song: track.name,
       Artist: track.artists.map(artist => artist.name).join(', '),
       Image: track.album.images[0]?.url,
-      Uri: track.uri,
+      // Uri: track.uri,
     }));
   };
 
